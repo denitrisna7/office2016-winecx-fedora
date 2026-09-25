@@ -1,0 +1,12 @@
+*.iso
+winecx.zip
+FuentesOffice365.zip
+Requerimientos Office 2016.zip
+FuentesOffice365/
+Requerimientos Office 2016/
+.office2016/
+*.log
+__pycache__/
+*.pyc
+.DS_Store
+.vscode/
