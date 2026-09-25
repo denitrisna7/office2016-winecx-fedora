@@ -57,7 +57,7 @@ Download the required files from the folder and place them in `~/Downloads`.
 
 ## 2. File Structure
 
-After all files are placed in `~/Downloads`, the initial structure should look approximately like this:
+After downloading the files individually, the initial structure should look approximately like this:
 
 ```text
 ~/Downloads/
@@ -91,8 +91,6 @@ Requerimientos Office 2016.zip
 
 ## Step 1 — Clone the Repository
 
-Clone the repository:
-
 ```bash
 git clone https://github.com/denitrisna7/office2016-winecx-fedora.git
 cd office2016-winecx-fedora
@@ -106,17 +104,32 @@ cp install_office2016_fedora.py ~/Downloads/
 
 ---
 
-## Step 2 — Verify the Source Files
+## Step 2 — Download and Verify the Source Files
 
-Check:
+Download each required source file **individually** from the Google Drive folder and place all files directly in:
+
+```text
+~/Downloads/
+```
+
+The required files are:
+
+- `SW_DVD5_Office_Professional_Plus_2016_W32_English_MLF_X20-41353.ISO`
+- `winecx.zip`
+- `FuentesOffice365.zip`
+- `Requerimientos Office 2016.zip`
+
+After downloading all files, verify that they exist:
 
 ```bash
 cd ~/Downloads
 
-ls -lh "SW_DVD5_Office_Professional_Plus_2016_W32_English_MLF_X20-41353.ISO" "winecx.zip" "FuentesOffice365.zip" "Requerimientos Office 2016.zip"
+ls -lh   "SW_DVD5_Office_Professional_Plus_2016_W32_English_MLF_X20-41353.ISO"   "winecx.zip"   "FuentesOffice365.zip"   "Requerimientos Office 2016.zip"
 ```
 
-If all four files are listed, continue.
+If all four files are listed, continue to Step 3.
+
+> **Important:** Download the files individually. Do not extract, rename, or combine the source files before running the installer.
 
 ---
 
@@ -160,7 +173,7 @@ The Fedora desktop used during development and testing:
 
 ### Hardware Information
 
-Hardware and system information from the test machine:
+System hardware information from the test machine:
 
 ![Hardware Information](screenshots/hardware-information.png)
 
@@ -340,7 +353,7 @@ Permissions are repaired only within the Fonts directory of the Office prefix.
 
 ---
 
-# 9. Verification After Installation
+# 9. Post-Installation Verification
 
 Run:
 
@@ -487,7 +500,7 @@ The installer skips `setup.exe` and continues with the post-installation stages.
 
 # 15. License and Distribution
 
-This repository contains **only the installation script**.
+This repository contains **only the installation script and documentation**.
 
 Microsoft Office files, the ISO, proprietary fonts, proprietary DLLs, and other copyrighted materials **are not included in this repository**.
 
