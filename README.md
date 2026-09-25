@@ -1,64 +1,63 @@
 # Office 2016 + WineCX — Fedora 44
 
-Installer otomatis untuk menjalankan **Microsoft Office 2016 32-bit** di Fedora menggunakan **WineCX** dan prefix khusus `~/.office2016`.
+Automatic installer for running **Microsoft Office 2016 32-bit** on Fedora using **WineCX** and a dedicated `~/.office2016` prefix.
 
 > **Status:** V3.13.4  
-> Fokus versi ini: instalasi yang dapat dilanjutkan, output installer yang ringkas, progress persentase, perbaikan permission font, instalasi icon, launcher GNOME, dan verifikasi akhir.
+> This version focuses on resumable installation, concise installer output, percentage progress, font permission fixes, icon installation, GNOME launchers, and final verification.
 
 ---
 
-## ⚠️ Catatan penting
+## ⚠️ Important Notes
 
-Project ini **tidak menyertakan file ISO Microsoft Office, WineCX binary, font package, atau file proprietary Microsoft lainnya**.
+This project **does not include the Microsoft Office ISO, WineCX binary, font packages, or other proprietary Microsoft files**.
 
-Pengguna harus menyediakan file yang memang berhak digunakan/didistribusikan dan meletakkannya di folder `~/Downloads`.
+Users must provide files they are legally entitled to use/distribute and place them in `~/Downloads`.
 
-Jika file sumber disediakan melalui Google Drive, gunakan **link Google Drive milik Anda sendiri** pada bagian tabel sumber di bawah.
+If source files are provided through Google Drive, use **your own Google Drive link** in the source table below.
 
 ---
 
-## 1. Persyaratan
+## 1. Requirements
 
-### Sistem
+### System
 
-- Fedora 44
-- arsitektur x86_64
-- koneksi internet untuk dependency Fedora/Winetricks
-- akses `sudo`
-- ruang penyimpanan yang cukup untuk Office dan Wine prefix
+- Fedora Linux 44 (Forty Four)
+- x86_64 architecture
+- Internet connection for Fedora dependencies / Winetricks
+- `sudo` access
+- Sufficient storage for Office and the Wine prefix
 
-### File yang diperlukan
+### Required Files
 
-Letakkan semua file berikut di:
+Place all required files in:
 
 ```text
 ~/Downloads/
 ```
 
-| File | Keterangan | Link |
+| File | Description | Link |
 |---|---|---|
-| `install_office2016_fedora.py` | Installer utama | Repository ini |
-| `SW_DVD5_Office_Professional_Plus_2016_W32_English_MLF_X20-41353.ISO` | ISO Office 2016 32-bit | [📁 Google Drive](https://drive.google.com/drive/folders/1AnTp0PMuoUi1mC-LkcSHQFRXriFY54i5?usp=sharing) |
-| `winecx.zip` | WineCX precompiled | [📁 Google Drive](https://drive.google.com/drive/folders/1AnTp0PMuoUi1mC-LkcSHQFRXriFY54i5?usp=sharing) |
-| `FuentesOffice365.zip` | Font yang digunakan installer | [📁 Google Drive](https://drive.google.com/drive/folders/1AnTp0PMuoUi1mC-LkcSHQFRXriFY54i5?usp=sharing) |
-| `Requerimientos Office 2016.zip` | DLL, icon, dan file pendukung | [📁 Google Drive](https://drive.google.com/drive/folders/1AnTp0PMuoUi1mC-LkcSHQFRXriFY54i5?usp=sharing) |
+| `install_office2016_fedora.py` | Main installer | This repository |
+| `SW_DVD5_Office_Professional_Plus_2016_W32_English_MLF_X20-41353.ISO` | Office 2016 32-bit ISO | [📁 Google Drive](https://drive.google.com/drive/folders/1AnTp0PMuoUi1mC-LkcSHQFRXriFY54i5?usp=sharing) |
+| `winecx.zip` | Precompiled WineCX | [📁 Google Drive](https://drive.google.com/drive/folders/1AnTp0PMuoUi1mC-LkcSHQFRXriFY54i5?usp=sharing) |
+| `FuentesOffice365.zip` | Fonts used by the installer | [📁 Google Drive](https://drive.google.com/drive/folders/1AnTp0PMuoUi1mC-LkcSHQFRXriFY54i5?usp=sharing) |
+| `Requerimientos Office 2016.zip` | DLLs, icons, and supporting files | [📁 Google Drive](https://drive.google.com/drive/folders/1AnTp0PMuoUi1mC-LkcSHQFRXriFY54i5?usp=sharing) |
 
-> Nama file harus sesuai dengan yang tercantum di tabel agar installer dapat menemukannya secara otomatis.
+> File names must match the names listed in the table so the installer can find them automatically.
 
-### 📁 Sumber file
+### 📁 Source Files
 
-Semua file sumber tersedia dalam satu folder Google Drive:
+All source files are available in one Google Drive folder:
 
 **[📁 Download Office 2016 + WineCX — Google Drive](https://drive.google.com/drive/folders/1AnTp0PMuoUi1mC-LkcSHQFRXriFY54i5?usp=sharing)**
 
-Download file yang diperlukan dari folder tersebut dan letakkan di `~/Downloads`.
-
+Download the required files from the folder and place them in `~/Downloads`.
 
 ---
 
-## 2. Struktur file
+## 2. File Structure
 
-Setelah semua file berada di `~/Downloads`, struktur awalnya kira-kira:
+After all files are placed in `~/Downloads`, the initial structure should look approximately like this:
 
 ```text
 ~/Downloads/
@@ -69,9 +68,9 @@ Setelah semua file berada di `~/Downloads`, struktur awalnya kira-kira:
 └── Requerimientos Office 2016.zip
 ```
 
-Installer akan menangani ekstraksi file pendukung.
+The installer handles extraction of the supporting files.
 
-Untuk `Requerimientos Office 2016.zip`, struktur sumber yang digunakan adalah:
+For `Requerimientos Office 2016.zip`, the source structure used is:
 
 ```text
 Requerimientos Office 2016.zip
@@ -88,18 +87,18 @@ Requerimientos Office 2016.zip
 
 ---
 
-# 3. Instalasi
+# 3. Installation
 
-## Langkah 1 — Download repository
+## Step 1 — Clone the Repository
 
-Clone repository:
+Clone the repository:
 
 ```bash
 git clone https://github.com/denitrisna7/office2016-winecx-fedora.git
 cd office2016-winecx-fedora
 ```
 
-Salin installer ke Downloads:
+Copy the installer to Downloads:
 
 ```bash
 cp install_office2016_fedora.py ~/Downloads/
@@ -107,25 +106,21 @@ cp install_office2016_fedora.py ~/Downloads/
 
 ---
 
-## Langkah 2 — Pastikan source tersedia
+## Step 2 — Verify the Source Files
 
-Cek:
+Check:
 
 ```bash
 cd ~/Downloads
 
-ls -lh \
-"SW_DVD5_Office_Professional_Plus_2016_W32_English_MLF_X20-41353.ISO" \
-"winecx.zip" \
-"FuentesOffice365.zip" \
-"Requerimientos Office 2016.zip"
+ls -lh "SW_DVD5_Office_Professional_Plus_2016_W32_English_MLF_X20-41353.ISO" "winecx.zip" "FuentesOffice365.zip" "Requerimientos Office 2016.zip"
 ```
 
-Jika keempat file muncul, lanjutkan.
+If all four files are listed, continue.
 
 ---
 
-## Langkah 3 — Jalankan installer
+## Step 3 — Run the Installer
 
 ```bash
 cd ~/Downloads
@@ -133,16 +128,15 @@ chmod +x install_office2016_fedora.py
 python3 install_office2016_fedora.py
 ```
 
-Installer akan meminta password `sudo` jika diperlukan.
+The installer may request your `sudo` password when required.
 
 ---
 
+## 3.1 Tested Environment
 
-## 3.1 Environment yang digunakan
+This installer was developed and tested in the following environment:
 
-Installer ini dikembangkan dan diuji pada environment berikut:
-
-| Komponen | Versi / Detail |
+| Component | Version / Detail |
 |---|---|
 | Operating System | **Fedora Linux 44 (Forty Four)** |
 | Architecture | **x86_64** |
@@ -158,45 +152,49 @@ Installer ini dikembangkan dan diuji pada environment berikut:
 
 ## 3.2 Screenshots
 
-### Fedora Linux 44 — System Information
+### Fedora Desktop
 
-Environment yang digunakan untuk pengembangan dan pengujian installer:
+The Fedora desktop used during development and testing:
 
-![Fedora Linux 44 — System Information](screenshots/fedora-system.png)
+![Fedora Desktop](screenshots/fedora-desktop.png)
 
-### Office 2016 Installation
+### Hardware Information
 
-Proses instalasi Microsoft Office 2016 menggunakan WineCX:
+Hardware and system information from the test machine:
 
-![Office 2016 Installation](screenshots/office-installation-01.png)
+![Hardware Information](screenshots/hardware-information.png)
 
-![Office 2016 Installation](screenshots/office-installation-02.png)
+### GNOME All Apps — Office Applications
 
-![Office 2016 Installation](screenshots/office-installation-03.png)
+Microsoft Office applications available in the GNOME Applications menu:
 
-### Microsoft Office 2016
+![Office Applications in GNOME All Apps](screenshots/all-apps-01.png)
 
-Hasil instalasi Office 2016:
+![Office Applications in GNOME All Apps](screenshots/all-apps-02.png)
 
-![Microsoft Office 2016](screenshots/office-installed.png)
+### Microsoft PowerPoint 2016
 
-### Office 2016 in GNOME Applications
+PowerPoint 2016 running through WineCX:
 
-Launcher Microsoft Office 2016 yang dibuat oleh installer dan muncul di menu aplikasi GNOME:
+![Microsoft PowerPoint 2016](screenshots/powerpoint-2016.png)
 
-![Office 2016 in GNOME Applications](screenshots/office-all-apps.png)
+### Microsoft Word 2016
 
-### Office Application Launcher
+Word 2016 running through WineCX:
 
-Contoh launcher aplikasi Office:
+![Microsoft Word 2016](screenshots/word-2016.png)
 
-![Office 2016 Launcher](screenshots/office-launcher.png)
+### Microsoft Excel 2016
+
+Excel 2016 running through WineCX:
+
+![Microsoft Excel 2016](screenshots/excel-2016.png)
 
 ---
 
-# 4. Apa yang dilakukan installer?
+# 4. What Does the Installer Do?
 
-Installer menjalankan tahapan berikut:
+The installer runs the following stages:
 
 ```text
 [  8%] Source files ready
@@ -214,17 +212,17 @@ Installer menjalankan tahapan berikut:
 [100%] Final verification
 ```
 
-Normal output dari subprocess dibuat lebih ringkas agar terminal tidak dipenuhi log.
+Normal subprocess output is kept concise so the terminal is not flooded with logs.
 
-Jika terjadi error, detail error akan ditampilkan.
+If an error occurs, detailed error output is displayed.
 
 ---
 
-# 5. Office sudah terinstall?
+# 5. What If Office Is Already Installed?
 
-Installer dapat mendeteksi instalasi Office yang sudah ada.
+The installer can detect an existing Office installation.
 
-Jika prefix sudah berisi Office 2016:
+If the prefix already contains Office 2016:
 
 ```text
 State: COMPLETE
@@ -233,33 +231,33 @@ State: COMPLETE
 [INFO] Skipping setup.exe only; continuing all remaining PDF stages.
 ```
 
-Artinya installer **tidak mengulang instalasi Office**.
+This means the installer **does not reinstall Office**.
 
-Tahap setelahnya tetap dijalankan, termasuk:
+The remaining stages are still executed, including:
 
 - Gecko / Mono
 - DirectX fixes
-- Office DLL
-- icon
-- font
-- launcher
-- Excel association
-- desktop database
-- final verification
+- Office DLLs
+- Icons
+- Fonts
+- Launchers
+- Excel associations
+- Desktop database update
+- Final verification
 
-Ini memungkinkan script digunakan untuk **memperbaiki/menyelesaikan instalasi yang sebelumnya sudah berjalan sebagian**.
+This allows the script to **repair or complete an installation that previously stopped partway through the process**.
 
 ---
 
-# 6. Wine prefix
+# 6. Wine Prefix
 
-Office menggunakan prefix:
+Office uses the following prefix:
 
 ```text
 ~/.office2016
 ```
 
-Wine yang digunakan launcher:
+The Wine executable used by the launchers is:
 
 ```text
 /opt/winecx/bin/wine
@@ -277,13 +275,13 @@ WineCX:
 /opt/winecx
 ```
 
-Installer tidak menghapus prefix yang sudah ada.
+The installer does not remove an existing prefix.
 
 ---
 
-# 7. Office launcher
+# 7. Office Launchers
 
-Installer membuat launcher GNOME untuk:
+The installer creates GNOME launchers for:
 
 - Microsoft Word 2016
 - Microsoft Excel 2016
@@ -292,19 +290,19 @@ Installer membuat launcher GNOME untuk:
 - Microsoft Access 2016
 - Microsoft Publisher 2016
 
-Launcher berada di:
+Launchers are stored in:
 
 ```text
 /usr/share/applications/
 ```
 
-Icon berada di:
+Icons are stored in:
 
 ```text
 /usr/share/icons/hicolor/256x256/apps/
 ```
 
-Contoh:
+Example icons:
 
 ```text
 word2016.png
@@ -317,40 +315,40 @@ publisher2016.png
 
 ---
 
-# 8. Font
+# 8. Fonts
 
-Font dari:
+Fonts from:
 
 ```text
 FuentesOffice365.zip
 ```
 
-dipasang ke Wine prefix:
+are installed into the Wine prefix:
 
 ```text
 ~/.office2016/drive_c/windows/Fonts/
 ```
 
-Installer juga menangani kondisi ketika file font dari instalasi sebelumnya memiliki ownership/permission yang menyebabkan error seperti:
+The installer also handles cases where fonts from a previous installation have ownership or permissions that cause errors such as:
 
 ```text
 Permission denied:
 ~/.office2016/drive_c/windows/Fonts/tahoma.ttf
 ```
 
-Permission diperbaiki hanya pada direktori Fonts di prefix.
+Permissions are repaired only within the Fonts directory of the Office prefix.
 
 ---
 
-# 9. Verifikasi setelah instalasi
+# 9. Verification After Installation
 
-Jalankan:
+Run:
 
 ```bash
 ls -lh /usr/share/icons/hicolor/256x256/apps/*2016*.png
 ```
 
-Harus terdapat enam icon:
+The following six icons should exist:
 
 ```text
 word2016.png
@@ -361,7 +359,7 @@ access2016.png
 publisher2016.png
 ```
 
-Cek launcher:
+Check the launchers:
 
 ```bash
 ls -lh /usr/share/applications/*2016.desktop
@@ -369,9 +367,9 @@ ls -lh /usr/share/applications/*2016.desktop
 
 ---
 
-# 10. Menjalankan Office
+# 10. Running Office
 
-Setelah instalasi selesai, buka menu **Applications / Show Apps** GNOME dan cari:
+After installation, open **Applications / Show Apps** in GNOME and look for:
 
 ```text
 Microsoft Word 2016
@@ -379,22 +377,22 @@ Microsoft Excel 2016
 Microsoft PowerPoint 2016
 ```
 
-Launcher menggunakan WineCX secara langsung.
+The launchers use WineCX directly.
 
 ---
 
-# 11. Jika icon belum muncul
+# 11. If Icons Do Not Appear
 
-Refresh cache:
+Refresh the icon and desktop caches:
 
 ```bash
 sudo gtk-update-icon-cache -f -t /usr/share/icons/hicolor
 sudo update-desktop-database /usr/share/applications
 ```
 
-Kemudian logout/login GNOME.
+Then log out and log back into GNOME.
 
-Jika masih belum muncul, cek:
+If the icons still do not appear, check:
 
 ```bash
 ls -lh /usr/share/icons/hicolor/256x256/apps/*2016*.png
@@ -403,37 +401,37 @@ grep -R "^Icon=" /usr/share/applications/*2016.desktop
 
 ---
 
-# 12. Log instalasi
+# 12. Installation Log
 
-Log dibuat di:
+The installer creates a log at:
 
 ```text
 ~/Downloads/office2016_v3_13_4.log
 ```
 
-Jika instalasi mengalami masalah, kirim isi log tersebut untuk diagnosis.
+If the installation encounters a problem, provide the contents of this log for diagnosis.
 
 ---
 
-# 13. Memulai ulang instalasi
+# 13. Restarting the Installation
 
-Installer **tidak dirancang untuk menghapus semuanya secara otomatis**.
+The installer **is not designed to automatically remove everything**.
 
-Ini disengaja agar:
+This is intentional so that:
 
-- WineCX tidak perlu di-download ulang
-- Office prefix tidak hilang
-- Office tidak perlu diinstall ulang
-- source file tetap tersedia
-- instalasi yang sudah berhasil tidak rusak
+- WineCX does not need to be downloaded again
+- The Office prefix is preserved
+- Office does not need to be reinstalled
+- Source files remain available
+- A successful installation is not damaged
 
-Jika ingin melakukan clean install, hapus prefix hanya setelah memahami konsekuensinya:
+If you want a clean installation, remove the prefix only after understanding the consequences:
 
 ```bash
 rm -rf ~/.office2016
 ```
 
-> Jangan menjalankan perintah ini jika Anda hanya ingin memperbaiki launcher, icon, font, atau tahap post-install.
+> Do not run this command if you only want to repair launchers, icons, fonts, or post-installation stages.
 
 ---
 
@@ -441,79 +439,79 @@ rm -rf ~/.office2016
 
 ### `setup.exe not found`
 
-Pastikan ISO ada dengan nama yang tepat:
+Make sure the ISO exists with the correct name:
 
 ```text
 SW_DVD5_Office_Professional_Plus_2016_W32_English_MLF_X20-41353.ISO
 ```
 
-### `winecx.zip` tidak ditemukan
+### `winecx.zip` not found
 
-Pastikan:
+Make sure:
 
 ```text
 ~/Downloads/winecx.zip
 ```
 
-tersedia.
+exists.
 
-### Icon tidak ditemukan
+### Icons not found
 
-Pastikan:
+Make sure:
 
 ```text
 ~/Downloads/Requerimientos Office 2016.zip
 ```
 
-tersedia.
+exists.
 
-Installer akan mencari:
+The installer will look for:
 
 ```text
 Requerimientos Office 2016/Office 2016 icons.zip
 ```
 
-dan mengekstraknya jika diperlukan.
+and extract it when necessary.
 
-### Permission denied pada font
+### Permission denied on fonts
 
-V3.13.4 sudah menangani ownership/permission font yang berasal dari instalasi sebelumnya.
+V3.13.4 handles ownership and permission problems with fonts left by previous installations.
 
-### Office terdeteksi COMPLETE
+### Office detected as COMPLETE
 
-Ini normal.
+This is normal.
 
-Installer akan melewati `setup.exe` dan melanjutkan tahap post-install.
-
----
-
-# 15. Lisensi dan distribusi
-
-Repository ini hanya berisi **script instalasi**.
-
-File Microsoft Office, ISO, font proprietary, DLL proprietary, dan materi berhak cipta lainnya **tidak disertakan dalam repository**.
-
-Pengguna bertanggung jawab memastikan bahwa mereka memiliki hak/lisensi yang diperlukan untuk memperoleh dan menggunakan file tersebut.
-
-Jika menyediakan source melalui Google Drive, gunakan file yang Anda memang berhak bagikan dan atur permission Google Drive sesuai kebutuhan.
+The installer skips `setup.exe` and continues with the post-installation stages.
 
 ---
 
-# 16. Kontribusi
+# 15. License and Distribution
 
-Pull request dan issue dipersilakan untuk:
+This repository contains **only the installation script**.
 
-- perbaikan kompatibilitas Fedora
-- perbaikan installer
-- perbaikan launcher
-- perbaikan icon
-- perbaikan dokumentasi
-- peningkatan error handling
+Microsoft Office files, the ISO, proprietary fonts, proprietary DLLs, and other copyrighted materials **are not included in this repository**.
+
+Users are responsible for ensuring that they have the necessary rights and licenses to obtain and use those files.
+
+If you provide source files through Google Drive, use files that you are legally entitled to share and configure Google Drive permissions appropriately.
+
+---
+
+# 16. Contributing
+
+Pull requests and issues are welcome for:
+
+- Fedora compatibility improvements
+- Installer fixes
+- Launcher fixes
+- Icon fixes
+- Documentation improvements
+- Better error handling
 
 ---
 
 ## License
 
-Lisensi repository ini dapat ditentukan oleh pemilik repository.
+The license for this repository can be determined by the repository owner.
 
-**Catatan:** lisensi repository script ini tidak memberikan hak apa pun atas Microsoft Office atau komponen proprietary Microsoft.
+> **Note:** The license for this installation script does not grant any rights to Microsoft Office or any proprietary Microsoft components.
