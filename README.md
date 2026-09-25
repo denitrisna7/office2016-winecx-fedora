@@ -38,12 +38,21 @@ Letakkan semua file berikut di:
 | File | Keterangan | Link |
 |---|---|---|
 | `install_office2016_fedora.py` | Installer utama | Repository ini |
-| `SW_DVD5_Office_Professional_Plus_2016_W32_English_MLF_X20-41353.ISO` | ISO Office 2016 32-bit | **[Google Drive — isi link Anda]** |
-| `winecx.zip` | WineCX precompiled | **[Google Drive — isi link Anda]** |
-| `FuentesOffice365.zip` | Font yang digunakan installer | **[Google Drive — isi link Anda]** |
-| `Requerimientos Office 2016.zip` | DLL, icon, dan file pendukung | **[Google Drive — isi link Anda]** |
+| `SW_DVD5_Office_Professional_Plus_2016_W32_English_MLF_X20-41353.ISO` | ISO Office 2016 32-bit | [📁 Google Drive](https://drive.google.com/drive/folders/1AnTp0PMuoUi1mC-LkcSHQFRXriFY54i5?usp=sharing) |
+| `winecx.zip` | WineCX precompiled | [📁 Google Drive](https://drive.google.com/drive/folders/1AnTp0PMuoUi1mC-LkcSHQFRXriFY54i5?usp=sharing) |
+| `FuentesOffice365.zip` | Font yang digunakan installer | [📁 Google Drive](https://drive.google.com/drive/folders/1AnTp0PMuoUi1mC-LkcSHQFRXriFY54i5?usp=sharing) |
+| `Requerimientos Office 2016.zip` | DLL, icon, dan file pendukung | [📁 Google Drive](https://drive.google.com/drive/folders/1AnTp0PMuoUi1mC-LkcSHQFRXriFY54i5?usp=sharing) |
 
 > Nama file harus sesuai dengan yang tercantum di tabel agar installer dapat menemukannya secara otomatis.
+
+### 📁 Sumber file
+
+Semua file sumber tersedia dalam satu folder Google Drive:
+
+**[📁 Download Office 2016 + WineCX — Google Drive](https://drive.google.com/drive/folders/1AnTp0PMuoUi1mC-LkcSHQFRXriFY54i5?usp=sharing)**
+
+Download file yang diperlukan dari folder tersebut dan letakkan di `~/Downloads`.
+
 
 ---
 
@@ -342,7 +351,7 @@ grep -R "^Icon=" /usr/share/applications/*2016.desktop
 Log dibuat di:
 
 ```text
-~/Downloads/office2016_v3_13_3.log
+~/Downloads/office2016_v3_13_4.log
 ```
 
 Jika instalasi mengalami masalah, kirim isi log tersebut untuk diagnosis.
