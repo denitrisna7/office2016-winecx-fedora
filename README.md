@@ -137,6 +137,63 @@ Installer akan meminta password `sudo` jika diperlukan.
 
 ---
 
+
+## 3.1 Environment yang digunakan
+
+Installer ini dikembangkan dan diuji pada environment berikut:
+
+| Komponen | Versi / Detail |
+|---|---|
+| Operating System | **Fedora Linux 44 (Forty Four)** |
+| Architecture | **x86_64** |
+| Desktop Environment | **GNOME 50.2** |
+| Wine | **WineCX** |
+| WineCX location | `/opt/winecx` |
+| Office prefix | `~/.office2016` |
+| Microsoft Office | **Office 2016 32-bit** |
+
+> **Test environment:** Fedora Linux 44 (Forty Four), x86_64, GNOME 50.2.
+
+---
+
+## 3.2 Screenshots
+
+### Fedora Linux 44 — System Information
+
+Environment yang digunakan untuk pengembangan dan pengujian installer:
+
+![Fedora Linux 44 — System Information](screenshots/fedora-system.png)
+
+### Office 2016 Installation
+
+Proses instalasi Microsoft Office 2016 menggunakan WineCX:
+
+![Office 2016 Installation](screenshots/office-installation-01.png)
+
+![Office 2016 Installation](screenshots/office-installation-02.png)
+
+![Office 2016 Installation](screenshots/office-installation-03.png)
+
+### Microsoft Office 2016
+
+Hasil instalasi Office 2016:
+
+![Microsoft Office 2016](screenshots/office-installed.png)
+
+### Office 2016 in GNOME Applications
+
+Launcher Microsoft Office 2016 yang dibuat oleh installer dan muncul di menu aplikasi GNOME:
+
+![Office 2016 in GNOME Applications](screenshots/office-all-apps.png)
+
+### Office Application Launcher
+
+Contoh launcher aplikasi Office:
+
+![Office 2016 Launcher](screenshots/office-launcher.png)
+
+---
+
 # 4. Apa yang dilakukan installer?
 
 Installer menjalankan tahapan berikut:
